@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "563bd2862dc6d2d89f2edf1520bea18f",
+    "content-hash": "fa294d36e7b4fc7a7b30bdba6562b27b",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -267,17 +267,11 @@
         },
         {
             "name": "digitaldonkey/ethereum-php",
-            "version": "dev-master",
+            "version": "dev-degen-toonz",
             "source": {
                 "type": "git",
-                "url": "https://github.com/digitaldonkey/ethereum-php.git",
-                "reference": "8d10bba362e84507c8dff9757a80ee1f35fcaee5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/digitaldonkey/ethereum-php/zipball/8d10bba362e84507c8dff9757a80ee1f35fcaee5",
-                "reference": "8d10bba362e84507c8dff9757a80ee1f35fcaee5",
-                "shasum": ""
+                "url": "git@github.com:liarco/ethereum-php.git",
+                "reference": "82bfb566fa66890d4326782c36c0a798224542f3"
             },
             "require": {
                 "digitaldonkey/ecverify": "1.0",
@@ -291,14 +285,20 @@
                 "gossi/php-code-generator": "^0.5.0",
                 "phpunit/phpunit": "^4.0 || ^5.0"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
                     "Ethereum\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "scripts": {
+                "generate-methods": [
+                    "php scripts/generate-methods.php"
+                ],
+                "generate-complex-datatypes": [
+                    "php scripts/generate-complex-datatypes.php"
+                ]
+            },
             "license": [
                 "MIT"
             ],
@@ -309,11 +309,7 @@
                 }
             ],
             "description": "A library integrating Ethereum with typed PHP.",
-            "support": {
-                "issues": "https://github.com/digitaldonkey/ethereum-php/issues",
-                "source": "https://github.com/digitaldonkey/ethereum-php/tree/master"
-            },
-            "time": "2021-11-16T12:22:35+00:00"
+            "time": "2022-02-21T08:17:00+00:00"
         },
         {
             "name": "doctrine/annotations",

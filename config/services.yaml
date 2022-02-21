@@ -45,8 +45,6 @@ services:
     # FileSystemDriver configuration
     #
     # Available options:
-    # - @total_supply_provider.env_var
-    # - @total_supply_provider.open_sea_stats
     # - @total_supply_provider.web3
     total_supply_provider: '@total_supply_provider.web3'
 
@@ -85,16 +83,6 @@ services:
             - '%app.collection_hidden_asset_extension%'
 
     # Total supply providers
-    total_supply_provider.env_var:
-        class: App\TotalSupplyProvider\EnvVarProvider
-        arguments:
-            - '%env(int:ENV_TOTAL_SUPPLY)%'
-
-    total_supply_provider.open_sea_stats:
-        class: App\TotalSupplyProvider\OpenSeaStatsProvider
-        arguments:
-            - '%env(OPEN_SEA_COLLECTION_SLUG)%'
-
     total_supply_provider.web3:
         class: App\TotalSupplyProvider\Web3Provider
         arguments:

@@ -15,7 +15,7 @@
         "ext-iconv": "*",
         "aws/aws-sdk-php": "^3.209",
         "composer/package-versions-deprecated": "1.11.99.4",
-        "digitaldonkey/ethereum-php": "dev-master",
+        "digitaldonkey/ethereum-php": "dev-degen-toonz",
         "nette/utils": "^3.2",
         "phpdocumentor/reflection-docblock": "^5.3",
         "phpstan/phpdoc-parser": "^1.2",
@@ -122,5 +122,11 @@
             "allow-contrib": false,
             "require": "5.4.*"
         }
-    }
+    },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "git@github.com:liarco/ethereum-php.git"
+        }
+    ]
 }

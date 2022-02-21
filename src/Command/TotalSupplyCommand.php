@@ -50,7 +50,9 @@ class TotalSupplyCommand extends Command
     {
         $symfonyStyle = new SymfonyStyle($input, $output);
 
-        $symfonyStyle->success('Current total supply: '.$this->cachedTotalSupplyProvider->getTotalSupply().' (cached)');
+        $symfonyStyle->success(
+            'Current total supply: '.$this->cachedTotalSupplyProvider->getTotalSupply().', latest reserve token id is '.$this->cachedTotalSupplyProvider->getReserveTokenId().' (cached)',
+        );
 
         return Command::SUCCESS;
     }

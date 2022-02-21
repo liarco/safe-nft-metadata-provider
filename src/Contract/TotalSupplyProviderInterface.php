@@ -18,5 +18,12 @@ namespace App\Contract;
  */
 interface TotalSupplyProviderInterface
 {
+    /**
+     * @var int
+     */
+    final public const MAX_PUBLIC_SUPPLY = 8638;
+
     public function getTotalSupply(): int;
+
+    public function getReserveTokenId(): int;
 }

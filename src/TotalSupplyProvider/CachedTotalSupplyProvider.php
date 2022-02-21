@@ -29,6 +29,11 @@ final class CachedTotalSupplyProvider implements TotalSupplyProviderInterface
      */
     private const CACHE_TOTAL_SUPPLY = 'cached_total_supply_provider.total_supply';
 
+    /**
+     * @var string
+     */
+    private const CACHE_RESERVE_TOKEN_ID = 'cached_total_supply_provider.reserve_token_id';
+
     public function __construct(
         private readonly TotalSupplyProviderInterface $totalSupplyProvider,
         private readonly CacheInterface $cache,
@@ -49,5 +54,20 @@ final class CachedTotalSupplyProvider implements TotalSupplyProviderInterface
         }
 
         return $totalSupply;
+    }
+
+    public function getReserveTokenId(): int
+    {
+        $reserveTokenId = $this->cache->get(self::CACHE_RESERVE_TOKEN_ID, function (ItemInterface $item): int {
+            $item->expiresAfter((int) $this->parameterBag->get('app.cache_expiration'));
+
+            return $this->totalSupplyProvider->getReserveTokenId();
+        });
+
+        if (! is_int($reserveTokenId)) {
+            throw new LogicException('Unexpected cache value (it must be int).');
+        }
+
+        return $reserveTokenId;
     }
 }

@@ -27,6 +27,8 @@ final class Web3Provider implements TotalSupplyProviderInterface
 {
     private int $totalSupply;
 
+    private int $reserveTokenId;
+
     private readonly SmartContract $contract;
 
     public function __construct(
@@ -52,9 +54,26 @@ final class Web3Provider implements TotalSupplyProviderInterface
                 throw new RuntimeException('Unexpected result from "totalSupply" call: "'.$totalSupply.'"');
             }
 
-            $this->totalSupply = $totalSupply;
+            $this->totalSupply = $totalSupply - ($this->getReserveTokenId() - self::MAX_PUBLIC_SUPPLY);
         }
 
         return $this->totalSupply;
+    }
+
+    public function getReserveTokenId(): int
+    {
+        if (! isset($this->reserveTokenId)) {
+            /** @var CollectionContractInterface $smartContract */
+            $smartContract = $this->contract;
+            $reserveTokenId = $smartContract->_reserveTokenId()->val();
+
+            if (! is_int($reserveTokenId)) {
+                throw new RuntimeException('Unexpected result from "_reserveTokenId" call: "'.$reserveTokenId.'"');
+            }
+
+            $this->reserveTokenId = $reserveTokenId;
+        }
+
+        return $this->reserveTokenId;
     }
 }
